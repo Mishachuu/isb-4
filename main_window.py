@@ -52,6 +52,8 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(central_widget)
 
     def find_solution(self):
+        """Функция, которая вызывает методы из других файлов и перебирает раздичные значения номера
+        """
         self.result_label.setText('Search in progress...')
         self.pbar.show()
         if not self.timer.isActive():
@@ -77,7 +79,12 @@ class MainWindow(QMainWindow):
                 self.result_label.setText('Solution not found')
                 self.pbar.setValue(100)
 
-    def updateLabel(self, value):
+    def updateLabel(self, value: int):
+        """Функция, которая обновляет значение числа в слайдере
+
+        Args:
+            value (int): число ядер
+        """
         self.value_label.setText(str(value))
 
 

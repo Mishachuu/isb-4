@@ -1,4 +1,12 @@
 def algoritm_luna(number: int) -> bool:
+    """функция, которая проверяет номер карты используя алгоритм Луна
+
+    Args:
+        number (int): номер
+
+    Returns:
+        bool: соответствует/не соответствует
+    """
     number = str(number)
     if len(number) != 6:
         return False
