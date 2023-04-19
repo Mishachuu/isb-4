@@ -1,4 +1,25 @@
-def algoritm_luna(number: int) -> bool:
+import hashlib
+
+OPTIONS = {
+    'hash': '70ba6e37c3be80134c2fd8563043c0cb9278a43116b3bc2dfad03e2e455ed473',
+    'initial_digits': '446674',
+    'last_digits': '1378',
+}
+
+
+def check_hash(x: int) -> int:
+    """Функция, которая проверяет соответствие хеша надйенного числа, с данным нам хешем
+
+    Args:
+        x (int): номер карты
+
+    Returns:
+        int: номер карты
+    """
+    return x if hashlib.sha256(f'{OPTIONS["initial_digits"]}{x}{OPTIONS["last_digits"]}'.encode()).hexdigest() == f'{OPTIONS["hash"]}' else False
+
+
+def algorithm_luna(number: int) -> bool:
     """функция, которая проверяет номер карты используя алгоритм Луна
 
     Args:
@@ -10,10 +31,10 @@ def algoritm_luna(number: int) -> bool:
     number = str(number)
     if len(number) != 6:
         return False
-    bin = [4, 4, 6, 6, 7, 4]
-    end = [1, 3, 7]
     check = 8
+    bin = [int(i) for i in OPTIONS['initial_digits']]
     code = [int(i) for i in number]
+    end = [int(i) for i in OPTIONS['last_digits']]
     all_number = bin+code+end
     all_number = all_number[::-1]
     for i, num in enumerate(all_number):
